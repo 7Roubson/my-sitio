@@ -3,22 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Web</title>
+    <meta name="description" content="Una página web profesional y moderna">
+    <title>Mi Página Web Profesional</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
+            padding: 0;
+            box-sizing: border-box;
         }
-        h1 {
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             color: #333;
+        }
+        
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #667eea;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: slideUp 0.8s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .button-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        button, a.btn {
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 80px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero {
+                padding: 40px 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>¡Bienvenido!</h1>
-    <p>Este es un código HTML básico.</p>
-    <button onclick="alert('¡Hola Mundo!')">Haz clic aquí</button>
+    <header>
+        <nav>
+            <div class="logo">Mi Sitio</div>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#características">Características</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero" id="inicio">
+            <h1>¡Bienvenido a mi Página Web!</h1>
+            <p>Una página web moderna, responsiva y profesional construida con HTML5 y CSS3. Diseñada para ofrecer la mejor experiencia al usuario.</p>
+            <div class="button-container">
+                <button class="btn-primary" onclick="mostrarSaludo()">¡Haz clic aquí!</button>
+                <a href="#características" class="btn btn-secondary">Conoce más</a>
+            </div>
+        </section>
+        
+        <section class="features" id="características">
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>Moderno</h3>
+                <p>Diseño contemporáneo con gradientes y efectos visuales atractivos.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Responsivo</h3>
+                <p>Se adapta perfectamente a cualquier tamaño de pantalla.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Rápido</h3>
+                <p>Optimizado para carga rápida y mejor rendimiento.</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer id="contacto">
+        <p>&copy; 2026 Mi Página Web. Todos los derechos reservados.</p>
+        <p>Hecho con ❤️ usando HTML5 y CSS3</p>
+    </footer>
+    
+    <script>
+        function mostrarSaludo() {
+            alert('¡Hola! Gracias por visitarme. 👋');
+        }
+    </script>
 </body>
 </html>
