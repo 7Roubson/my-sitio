@@ -5,136 +5,263 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Página Web</title>
     <style>
-        * {
+        :root {
+            --bg: #f4f7fb;
+            --surface: #ffffff;
+            --surface-soft: rgba(255, 255, 255, 0.95);
+            --primary: #6c91f2;
+            --accent: #7bc1a5;
+            --text: #2c3e50;
+            --muted: #6b7a8a;
+            --radius: 20px;
+            --shadow: 0 18px 40px rgba(106, 115, 138, 0.14);
+        }
+
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #eef2f7 0%, #dfe9f3 100%);
             min-height: 100vh;
-            color: #333;
+            color: var(--text);
+            line-height: 1.6;
         }
-        
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(220, 20, 60, 0.12), transparent 25%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
         header {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 20px 0;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 20;
+            background: rgba(8, 13, 25, 0.82);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
-        
+
         nav {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 18px 24px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
         }
-        
+
         .logo {
-            font-size: 24px;
-            font-weight: bold;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
         }
-        
-        nav ul {
-            list-style: none;
+
+        .menu {
             display: flex;
-            gap: 30px;
+            gap: 1.5rem;
+            list-style: none;
         }
-        
-        nav a {
-            color: white;
+
+        .menu a {
+            color: #d8dbe7;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease;
         }
-        
-        nav a:hover {
-            color: #667eea;
+
+        .menu a:hover,
+        .menu a:focus {
+            color: var(--surface);
         }
-        
+
         main {
             max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 20px;
+            margin: 0 auto;
+            padding: 40px 24px 64px;
         }
-        
+
         .hero {
-            background: white;
-            padding: 60px 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            animation: slideUp 0.8s ease;
+            background: var(--surface-soft);
+            padding: 64px 52px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: grid;
+            gap: 30px;
         }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: var(--primary);
+            margin-bottom: 0;
         }
-        
-        h1 {
-            color: #180d0d;
-            font-size: 42px;
-            margin-bottom: 20px;
+
+        .hero p {
+            color: var(--text);
+            max-width: 760px;
         }
-        
-        p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #5c7ae7);
+            color: white;
+            box-shadow: 0 18px 32px rgba(108, 145, 242, 0.18);
         }
-        
-        .button-container {
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .actions {
             display: flex;
-            gap: 15px;
-            justify-content: center;
+            gap: 16px;
             flex-wrap: wrap;
         }
-        
-        button, a.btn {
-            padding: 12px 30px;
-            font-size: 16px;
+
+        .btn {
             border: none;
-            border-radius: 5px;
+            border-radius: 999px;
+            padding: 14px 28px;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
-        
+
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary), #8c1035);
             color: white;
+            box-shadow: 0 18px 32px rgba(220, 20, 60, 0.24);
         }
-        
-        .btn-primary:hover {
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .card {
+            background: var(--surface-soft);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--muted);
+        }
+
+        footer {
+            margin-top: 56px;
+            text-align: center;
+            padding: 28px 20px;
+            color: #c8d0e7;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 40px 24px;
+            }
+
+            .menu {
+                gap: 1rem;
+            }
+
+            .actions {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="logo">Mi Página</div>
+            <ul class="menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-        <div class="hero">
-            <h1>¡Bienvenido!</h1>
-            <p>Este es un código HTML básico con mejoras sencillas.</p>
-            <div class="button-container">
-                <button class="btn-primary" onclick="alert('¡Hola Mundo!')">Haz clic aquí</button>
+        <section class="hero" id="inicio">
+            <h1>¡Bienvenido a mi web mejorada!</h1>
+            <p>He actualizado el diseño para lograr una apariencia más moderna, una estructura semántica más clara y un código más fácil de mantener. La página sigue siendo rápida y adaptada a dispositivos móviles.</p>
+            <div class="actions">
+                <button type="button" class="btn btn-primary" id="greetButton">Haz clic aquí</button>
+                <a href="#contacto" class="btn btn-secondary">Contáctame</a>
             </div>
+        </section>
+
+        <section class="features" id="servicios">
+            <article class="card">
+                <h2>Diseño moderno</h2>
+                <p>Se emplea una paleta elegante, sombras suaves y un diseño fluido para que la página se vea profesional y agradable.</p>
+            </article>
+            <article class="card">
+                <h2>Estructura clara</h2>
+                <p>Uso de etiquetas semánticas y una organización simple para facilitar futuras mejoras y la accesibilidad.</p>
+            </article>
+            <article class="card">
+                <h2>Interacción limpia</h2>
+                <p>El botón usa JavaScript separado del HTML, lo que hace el código más limpio y más fácil de mantener.</p>
+            </article>
+        </section>
+
+        <footer id="contacto">
+            <p>¿Te gustaría seguir mejorando esta página? Puedes usar este código como base para un proyecto real.</p>
+            <p>&copy; 2026 Mi Página Web</p>
+        </footer>
+    </main>
+
+    <script>
+        document.getElementById('greetButton').addEventListener('click', function () {
+            alert('¡Hola Mundo! Gracias por visitar la página.');
+        });
+    </script>
+</body>
+</html>
+
         </div>
     </main>
 </body>
